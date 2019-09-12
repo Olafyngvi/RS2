@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoKuca.MobileApp.Views.DioDetaljiPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto">
+                    </RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                    <Label Text="{Binding Dio.Naziv}">
+                    </Label>
+                    <Label Text="{Binding Dio.Cijena, StringFormat='Cijena: {0:C}'}"></Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Keyboard="Numeric" Text="{Binding Kolicina}"></Entry>
+                        <Label Text="{Binding Kolicina}"></Label>
+                        <Button Text="+1" Command="{Binding KolicinaIncrementCommand}" ></Button>
+                    </StackLayout>
+
+
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="End" Padding="10">
+                    <Image  Source="cart.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding KupiCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Converters="clr-namespace:AutoKuca.MobileApp.Converters"
+             BackgroundColor="LightGray"
+             
+             x:Class="AutoKuca.MobileApp.Views.DioDetaljiPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:ImageConverter x:Key="imgConv"></Converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Grid x:Name="dijeloviGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0">
+                    <Image BackgroundColor="Accent" Source="{Binding Dio.Slika,Converter={StaticResource imgConv}}"></Image>
+                    <Label FontAttributes="Bold" Text="{Binding Dio.Model, StringFormat='Model: {0:C}'}"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="0" Grid.Column="1" Margin="10,0,0,0">
+                    <Label FontAttributes="Bold" Text="{Binding Dio.Naziv,StringFormat='Naziv: {0}'}" ></Label>
+                    <Label Text="{Binding Dio.Sifra,StringFormat='Sifra:   {0}'}" ></Label>
+                    <Label Text="{Binding Dio.Cijena,StringFormat= 'Cijena:  {0} KM'}" ></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0">
+                    <Entry Keyboard="Numeric" Text="{Binding Kolicina}"></Entry>
+                    <Button Text="+1" BackgroundColor="#2D74AC" Command="{Binding KolicinaIncrementCommand}" ></Button>
+                    <Image  Source="cart.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

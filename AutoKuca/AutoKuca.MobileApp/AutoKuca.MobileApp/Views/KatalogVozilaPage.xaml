@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:AutoKuca.MobileApp.Converters"
+             x:Class="AutoKuca.MobileApp.Views.KatalogVozilaPage"
+           BackgroundColor="LightGray"
+              Title="{Binding Title}"
+             Padding="20">
+    <ContentPage.BindingContext>
+        <vm:KatalogVozilaVM></vm:KatalogVozilaVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout >
+
+            <Picker  Title="Izaberi marku:" ItemsSource="{Binding Marke}"      ItemDisplayBinding="{Binding Naziv}"
+                    SelectedItem="{Binding MarkaSearch}"/>
+            <Picker Title="Izaberi tip vozila:" ItemsSource="{Binding Tipovi}"      ItemDisplayBinding="{Binding Naziv}"
+                    SelectedItem="{Binding TipSearch}" />
+            <Picker Title="Izaberi transmisiju:" ItemsSource="{Binding Transmisija}"      ItemDisplayBinding="{Binding Naziv}"
+                    SelectedItem="{Binding TransSearch}" />
+            
+            <ListView ItemsSource="{Binding VozilaList}" ItemSelected="ListView_ItemSelected" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout>
+                                <Image WidthRequest="120" HeightRequest="120" Source="{Binding Slika,Converter={StaticResource imgConv}}"></Image>
+                                </StackLayout>
+                                <StackLayout Margin="20" >
+                                <Label  Text="{Binding Model}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                <Label  Text="{Binding Marka}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="14" />
+                                <Label Text="{Binding Cijena,StringFormat='Cijena {0:N} KM'}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

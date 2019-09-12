@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoKuca.Model;
+using AutoKuca.Model.Requests;
+using AutoKuca.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AutoKuca.WebAPI.Controllers
+{
+    public class VozilaController : BaseCRUDController<VozilaM, VozilaSearchRequest, VozilaUpsertRequest, VozilaUpsertRequest>
+    {
+        public VozilaController(ICRUDService<VozilaM, VozilaSearchRequest, VozilaUpsertRequest, VozilaUpsertRequest> service) : base(service)
+        {
+
+        }
+    }
+}

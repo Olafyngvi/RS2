@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AutoKuca.MobileApp.Converters"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:vm="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             x:Class="AutoKuca.MobileApp.Views.DetaljiVozilaPage"
+             BackgroundColor="LightGray"
+             Title="{Binding Title}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="LightGray">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="650"></RowDefinition>
+                    <RowDefinition Height="240"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <StackLayout Padding="15" Grid.Row="0">
+                    <Label Margin="4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Vozilo.Model}"  FontSize="Medium" />
+                                <Span Text=" "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.Marka}"  FontSize="Medium"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{Binding Vozilo.Cijena,StringFormat=' {0:N} KM'}" FontSize="Medium" FontAttributes="Bold" />
+                    <Button BackgroundColor="#2D74AC" Clicked="Button_Clicked" Text="Pošalji upit" FontSize="Medium"></Button>
+                    <Label Text="___________________________________________________________" FontSize="Small"/>
+
+                    <Label BackgroundColor="DarkGray">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Godina proizvodnje:"   FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                      "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.DatumProizvodnje.Year}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="LightGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Kilometraža:"  FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                        "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.Kilometraza,StringFormat=' {0:N} km'}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="DarkGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Kubikaža:"   BackgroundColor="#D2D2D2" FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                               "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.Kubikaza,StringFormat=' {0:N} cca'}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="LightGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Snaga motora:"   BackgroundColor="##DDDEE3"  FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                     "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.SnagaMotora,StringFormat=' {0:N} KS/kW'}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="DarkGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Broj vrata:"   BackgroundColor="#D2D2D2" FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                                         "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.BrojVrata}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="LightGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Gorivo:"   BackgroundColor="##DDDEE3"  FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                                        "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.Gorivo}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="DarkGray" >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <Span Text="Tip vozila:"   BackgroundColor="#D2D2D2" FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                                 "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.TipVozila}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label BackgroundColor="LightGray" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Transmisija:"  BackgroundColor="##DDDEE3"  FontAttributes="Bold" FontSize="Small"/>
+                                <Span Text="                                           "  FontSize="Medium" />
+                                <Span Text="{Binding Vozilo.Transmisija}"  FontSize="Small" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="___________________________________________________________" FontSize="Small"/>
+
+
+                    <Label Text="Dodatna oprema:" FontSize="Small" />
+                    <StackLayout Padding="15">
+                    <Label Text="{Binding Vozilo.OpremaOpis}"   TextColor="DarkRed" FontSize="Micro"/>
+                    </StackLayout>
+
+
+
+
+
+
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="1">
+                <flv:FlowListView FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="false"       FlowItemsSource="{Binding Galerija}"            
+                                  FlowLastTappedItem = "{Binding OdabranaSlika}"
+                                  FlowItemTapped="FlowListView_FlowItemTapped">
+                   
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Source="{Binding Slika,Converter={StaticResource imgConv}}" HeightRequest="120" WidthRequest="120" />
+                        </StackLayout>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+                </StackLayout >
+                <StackLayout Grid.Row="2" Margin="20,0,0,0">
+                    <Label Text="Najgledanije vozilo iste marke:"></Label>
+                    <ListView ItemsSource="{Binding VozilaList}" ItemSelected="ListView_ItemSelected" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Image WidthRequest="120" HeightRequest="120" Source="{Binding Slika,Converter={StaticResource imgConv}}"></Image>
+                                        </StackLayout>
+                                        <StackLayout Margin="20" >
+                                            <Label  Text="{Binding Model}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                            <Label  Text="{Binding Marka}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="14" />
+                                            <Label Text="{Binding Cijena,StringFormat='Cijena {0:N} KM'}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout Grid.Row="3" Margin="20">
+                    <Label Text="Slična vozila:"></Label>
+                    <ListView ItemsSource="{Binding VozilaTip}" ItemSelected="ListView_ItemSelected" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Image WidthRequest="120" HeightRequest="120" Source="{Binding Slika,Converter={StaticResource imgConv}}"></Image>
+                                        </StackLayout>
+                                        <StackLayout Margin="20,0,0,0" >
+                                            <Label  Text="{Binding Model}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                            <Label  Text="{Binding Marka}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="14" />
+                                            <Label Text="{Binding Cijena,StringFormat='Cijena {0:N} KM'}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

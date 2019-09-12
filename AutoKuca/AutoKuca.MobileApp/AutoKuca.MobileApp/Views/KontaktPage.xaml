@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             BackgroundColor="LightGray"
+             x:Class="AutoKuca.MobileApp.Views.KontaktPage"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModels:KontaktVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="35" BackgroundColor="LightGray">
+            <StackLayout>
+                <Label Margin="20"  TextColor="#2D74AC"   Text="Kontaktirajte nas putem forme."
+                HorizontalTextAlignment="Center" FontSize="Small"
+                />
+            <Label  Text="Ime i prezime:"/>
+            <Entry Text="{Binding ImePrezime}"></Entry>
+                <Label Text="{Binding ImeError}" IsVisible="{Binding VisibleIme}" Margin="5"
+         TextColor="Red" />
+                
+                <Label  Text="Email:"/>
+            <Entry Text="{Binding Email}"></Entry>
+                <Label Text="{Binding EmailError}" IsVisible="{Binding VisibleEmail}" Margin="5"
+         TextColor="Red" />
+                
+                <Label  Text="Poruka:"/>
+            <Entry Text="{Binding Poruka}"></Entry>
+                <Label Text="{Binding PorukaError}" IsVisible="{Binding VisiblePoruka}" Margin="5"
+         TextColor="Red" />
+
+                <Button Command="{Binding Send}"  BackgroundColor="#2D74AC" TextColor="White" Text="Pošalji upit" />
+            </StackLayout>
+            <StackLayout>
+                <flv:FlowListView FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="false" Margin="40,5,0,0"  HorizontalOptions="Center"     FlowItemsSource="{Binding poslovniceList}">
+                    <flv:FlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="       "  />
+                                <Label Text="{Binding Naziv}"  />
+                                <Label Text="{Binding Adresa}"  />
+                                <Label Text="{Binding Telefon}"  />
+                                <Label Text="{Binding Grad}"  />
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </flv:FlowListView.FlowColumnTemplate>
+                </flv:FlowListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

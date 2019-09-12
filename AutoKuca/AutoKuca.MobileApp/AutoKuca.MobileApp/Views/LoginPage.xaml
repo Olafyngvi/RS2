@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AutoKuca.MobileApp.ViewModels"
+                        BackgroundColor="LightGray"
+
+             x:Class="AutoKuca.MobileApp.Views.LoginPage"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModels:LoginVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="5" VerticalOptions="CenterAndExpand" BackgroundColor="LightGray">
+            <Label Margin="20" Text="Welcome to Auto Kuća NER "
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Label Text="Korisničko ime:"
+          />
+            <Entry Text="{Binding Username}"></Entry>
+            <Label Text="{Binding UserError}" IsVisible="{Binding VisibleKors}" Margin="5"
+         TextColor="Red" />
+            
+            <Label Text="Password:"
+              />
+            <Entry Text="{Binding Password}"  IsPassword="True"></Entry>
+            <Label Text="{Binding PassError}" Margin="5"
+        IsVisible="{Binding VisiblePass}" TextColor="Red" />
+
+            <Button Command="{Binding LoginKomanda}" BackgroundColor="#2D74AC" Text="Login"></Button>
+            <Button  Clicked="Button_Clicked" BackgroundColor="#2D74AC" Text="Registruj se"></Button>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

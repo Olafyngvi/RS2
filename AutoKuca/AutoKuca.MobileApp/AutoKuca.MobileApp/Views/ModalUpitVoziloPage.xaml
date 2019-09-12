@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             BackgroundColor="LightGray"
+             Title="{Binding Title}"
+             x:Class="AutoKuca.MobileApp.Views.ModalUpitVoziloPage">
+   
+    <ContentPage.Content>
+        <StackLayout Padding="35" BackgroundColor="LightGray">
+            <Label Margin="20"  BackgroundColor="#2D74AC" TextColor="White"   Text="Hvala na kontaktiranju, naš tim će se potruditi da što prije odgovori na Vaš upit."
+                HorizontalTextAlignment="Center" FontSize="Small"
+                />
+            <Label  Text="Ime i prezime:"/>
+            <Entry Text="{Binding ImePrezime}"></Entry>
+            <Label Text="{Binding ImeError}" IsVisible="{Binding VisibleIme}" Margin="5"
+         TextColor="Red" />
+            
+            <Label  Text="Email:"/>
+            <Entry Text="{Binding Email}"></Entry>
+            <Label Text="{Binding EmailError}" IsVisible="{Binding VisibleEmail}" Margin="5"
+         TextColor="Red" />
+            
+            <Label  Text="Poruka:"/>
+            <Entry Text="{Binding Poruka}"></Entry>
+            <Label Text="{Binding PorukaError}" IsVisible="{Binding VisiblePoruka}" Margin="5"
+         TextColor="Red" />
+
+            <Button Command="{Binding Send}"  BackgroundColor="#2D74AC" TextColor="White" Text="Pošalji" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

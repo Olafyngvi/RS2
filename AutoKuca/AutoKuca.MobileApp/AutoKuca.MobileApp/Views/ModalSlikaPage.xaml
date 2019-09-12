@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:AutoKuca.MobileApp.Converters"
+                          BackgroundColor="LightGray"
+
+             x:Class="AutoKuca.MobileApp.Views.ModalSlikaPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+
+        <StackLayout>
+            <ScrollView Padding="30" Orientation="Horizontal">
+                <Image HorizontalOptions="Fill" Aspect="AspectFill" Source="{Binding Slika.Slika,Converter={StaticResource imgConv}}"></Image>
+            </ScrollView>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

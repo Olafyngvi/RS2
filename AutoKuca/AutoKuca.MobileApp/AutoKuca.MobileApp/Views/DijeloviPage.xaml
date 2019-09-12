@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AutoKuca.MobileApp.ViewModels"
+             xmlns:Converters="clr-namespace:AutoKuca.MobileApp.Converters"
+             mc:Ignorable="d"
+             BackgroundColor="LightGray"
+             
+             x:Class="AutoKuca.MobileApp.Views.DijeloviPage">
+    <ContentPage.BindingContext>
+        <vm:DijeloviViewModel></vm:DijeloviViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:ImageConverter x:Key="imgConv"></Converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Dijelovi"
+                   FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand" />
+            <Picker ItemsSource="{Binding KategorijaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedKategorija}">
+                
+            </Picker>
+            <ListView ItemsSource="{Binding DijeloviList}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="2" Margin="0,5,0,5" HeightRequest="120">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="image" Grid.Column="0" BackgroundColor="Accent"  Source="{Binding Slika, Converter={StaticResource imgConv}}"></Image>
+                                    <StackLayout Grid.Column="1" Padding="5">
+                                        <Label Text="{Binding Naziv}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"></Label>
+                                        <Label Text="{Binding Model,StringFormat='Model: {0}'}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="13"></Label>
+                                        <Label Text="{Binding Sifra,StringFormat='Sifra: {0}'}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13"></Label>
+                                        <Label Text="{Binding Cijena,StringFormat='Cijena: {0} KM'}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13"></Label>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
