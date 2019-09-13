@@ -1,0 +1,10 @@
+Windows forms :
+
+MenadzerAuto 111
+MenadzerDio 111
+Admin 111
+
+
+Xamarin:
+KlijentTest 123456 ili
+Registracija novog naloga
